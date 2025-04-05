@@ -23,7 +23,8 @@ Go to the `Actions` menu, and launch workflow `02-gh-pages-rebuild-part-1` as sh
 
 Note that it can take a long time for the display to update, and you may even need to refresh the page.  If you click the button twice (because you don't think it "heard you the first time"), it will just take longer and possible fail.
    
-<img width="1307" alt="Run Workflow: 02-gh-pages-rebuild-part-1" src="https://github.com/ucsb-cs156-m23/STARTER-jpa03/assets/1119017/fb506c1f-dc95-4e33-9cfa-f91324705c87">
+<img width="1122"  alt="Run Workflow: 02-gh-pages-rebuild-part-1" src="https://github.com/user-attachments/assets/866da876-456e-4de3-9960-31419dadf6a4" />
+
 
 You now need to wait for this job to finish, kick off job `04-gh-pages-rebuild-part-2`, and then complete.
 
