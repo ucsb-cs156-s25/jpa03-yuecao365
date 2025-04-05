@@ -51,7 +51,7 @@ Here's how to re-run failed Github Actions:
 
 Alternatively, find the button upper left that says "Run Workflow", click it, and then click the green `Run Workflow` button, as shown here:
    
-<img width="920" alt="image" src="https://github.com/user-attachments/assets/ef8c6b89-77fd-4d29-8367-09441ab8e5d1">
+<img width="414" alt="image" src="https://github.com/user-attachments/assets/aed9fbdc-5976-4997-9d36-640e5cb11cf0" />
 
 </details>
 
