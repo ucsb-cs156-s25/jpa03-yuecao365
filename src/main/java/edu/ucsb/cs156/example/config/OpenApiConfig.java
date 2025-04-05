@@ -5,17 +5,15 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.servers.Server;
 
 /**
- * The `OpenAPIConfig` class is annotated with OpenAPI definitions including information about the API
+ * The `OpenAPIConfig` class is annotated with OpenAPI definitions including
+ * information about the API
  * and server configuration.
  */
-@OpenAPIDefinition(
-  info = @Info(
-  title = "CMPSC 156, jpa03",
-  description = """
+@OpenAPIDefinition(info = @Info(title = "CMPSC 156, jpa03", description = """
     <p><a href='/'>Home Page</a></p>
     <p><a href='/h2-console'>H2 Console (only on localhost)</a></p>
-    """     
-    ),
-  servers = @Server(url = "/")
-)
-class OpenAPIConfig {}
+    <p><a href='/login'>login</a></p>
+    <p><a href='/logout'>logout</a></p>
+    """), servers = @Server(url = "/"))
+class OpenAPIConfig {
+}
