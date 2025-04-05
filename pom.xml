@@ -14,7 +14,7 @@
     <artifactId>example</artifactId>
     <version>1.1.0</version>
     <name>example</name>
-    <description>Spring Boot + React Example</description>
+    <description>Spring Boot Example (backend only) for jpa03</description>
     <properties>
         <java.version>21</java.version>
         <app.package>edu.ucsb.cs156.example</app.package>
@@ -318,67 +318,6 @@
                     <scope>runtime</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <version>1.12.1</version>
-                        <configuration>
-                            <workingDirectory>frontend</workingDirectory>
-                            <installDirectory>${project.build.directory}</installDirectory>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>install node and npm</id>
-                                <goals>
-                                    <goal>install-node-and-npm</goal>
-                                </goals>
-                                <configuration>
-                                    <nodeVersion>v20.17.0</nodeVersion>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm install</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>ci</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm run build</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>run build</arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>3.0.0</version>
-                        <executions>
-                            <execution>
-                                <phase>generate-resources</phase>
-                                <configuration>
-                                    <target>
-                                        <copy todir="${project.build.outputDirectory}/public">
-                                            <fileset dir="${project.basedir}/frontend/build" />
-                                        </copy>
-                                    </target>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
 
         <!-- to run with this profile use "PRODUCTION=true mvn spring-boot:run" -->
@@ -392,67 +331,6 @@
             <properties>
                 <springProfiles>production</springProfiles>
             </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <version>1.12.1</version>
-                        <configuration>
-                            <workingDirectory>frontend</workingDirectory>
-                            <installDirectory>${project.build.directory}</installDirectory>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>install node and npm</id>
-                                <goals>
-                                    <goal>install-node-and-npm</goal>
-                                </goals>
-                                <configuration>
-                                    <nodeVersion>v20.17.0</nodeVersion>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm install</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>ci</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm run build</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>run build</arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>3.0.0</version>
-                        <executions>
-                            <execution>
-                                <phase>generate-resources</phase>
-                                <configuration>
-                                    <target>
-                                        <copy todir="${project.build.outputDirectory}/public">
-                                            <fileset dir="${project.basedir}/frontend/build" />
-                                        </copy>
-                                    </target>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
 </project>
