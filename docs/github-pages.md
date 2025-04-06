@@ -1,4 +1,4 @@
-# Github Pages
+# Github Pages (for backend only)
 
 This repo contains Github Actions workflows (under the `.github/workflows` directory) that
 can automatically publish documentation to a `gh-pages` branch, and publish documentation
