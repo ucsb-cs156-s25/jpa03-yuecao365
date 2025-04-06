@@ -19,7 +19,6 @@ This repo contains Github Actions scripts that automatically create and publish 
 
 To set this up, follow the instructions here: [`docs/github-pages.md`](docs/github-pages.md)
 
-
 # Getting Started on localhost
 
 Before running the application for the first time on localhost, you must: 
@@ -31,65 +30,10 @@ will likely see an error such as:
 
 <img src="https://user-images.githubusercontent.com/1119017/149858436-c9baa238-a4f7-4c52-b995-0ed8bee97487.png" alt="Authorization Error; Error 401: invalid_client; The OAuth client was not found." width="400"/>
 
-Then:
+Then to run the application, use `mvn spring-boot:run`
 
-* Open *two separate terminal windows*  
-* In the first window, start up the backend with:
-  ``` 
-  mvn spring-boot:run
-  ```
-* In the second window:
-  ```
-  cd frontend
-  nvm install 20.17.0
-  nvm use 20.17.0
-  npm ci  
-  npm start
-  ```
 The app should be available on <http://localhost:8080>
-
-A few notes:
-* The `nvm install 20.17.0` command is only needed once per system.
-* The `nvm use 20.17.0` command is only needed once per terminal session
-* The `npm ci` command (`ci` is for `clean install` is typically only needed on your first run.
-
-So subsequent runs of the frontend are typically:
-
-```
-cd frontend
-nvm use 20.17.0
-npm start
-```
-
-### Note: <http://localhost:8080> not <http://localhost:3000> 
-
-The `npm start` command may open up a web browser with the app running on port <http://localhost:3000>.
-
-* You should *close this window* and work in one where you put in the url <http://localhost:8080>.  
-* The <http://localhost:3000> window has a frontend that is *not connected to the backend* and most
-  functions in that window will fail to work.
-* If you want to avoid this useless browser window opening up, <br />
-  instead of `npm start`, type this:
-
-  ```
-  BROWSER=none npm start
-  ```
   
-### What if it doesn't work?
-
-If it doesn't work at first, e.g. you have a blank page on  <http://localhost:8080>, give it a minute and a few page refreshes.  Sometimes it takes a moment for everything to settle in.
-
-If you see the following on localhost, make sure that you also have the frontend code running in a separate window.
-
-```
-Failed to connect to the frontend server... 
-
-On Dokku, be sure that PRODUCTION is defined. 
-
-On localhost, open a second terminal window, 
-cd into frontend and type: npm ci; npm start";
-```
-
 # Getting Started on Dokku
 
 Follow the steps here: [`docs/dokku.md`](docs/dokku.md) 
