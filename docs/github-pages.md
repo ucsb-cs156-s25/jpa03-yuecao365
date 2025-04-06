@@ -26,12 +26,21 @@ Note that it can take a long time for the display to update, and you may even ne
 <img width="1122"  alt="Run Workflow: 02-gh-pages-rebuild-part-1" src="https://github.com/user-attachments/assets/866da876-456e-4de3-9960-31419dadf6a4" />
 
 
-You now need to wait for this job to finish, kick off job `04-gh-pages-rebuild-part-2`, and then complete.
+You now need to wait for this job to finish.
 
-It will create the Github Pages site for the repo, with links to documentation for both the backend (javadoc) and
-frontend (storybook).
+If and when job kick off job  `02-gh-pages-rebuild-part-1` finishes successfully:
+* It will *automatically* kick off `04-gh-pages-rebuild-part-2`.
+* Job `04-gh-pages-rebuild-part-2` will create a Github Pages site for the repo, with links to documentation for the Java code (in javadoc format) as well as links to the output of reports from jacoco (Code Coverage) and pitest (Mutation Coverage).
 
-It is not unusual for this job to fail (have a red X) the first time you run it.  Use the `Rerun Failed Jobs` option to just rerun the parts that failed.
+You'll need to click `04-gh-pages-rebuild-part-2` on on the left to see the status of job `04-gh-pages-rebuild-part-2`.  This is what a successful completion looks like:
+
+<img width="1219" alt="image" src="https://github.com/user-attachments/assets/5e85aea7-d004-4ec4-9ddc-c41fb2c440d9" />
+
+## What if the job fails?
+
+It is not unusual for this job to fail (have a red X) the first time you run it.  
+
+In this case, use the `Rerun Failed Jobs` option to just rerun the parts that failed.
 
 <details markdown="1">
 <summary markdown="1">
