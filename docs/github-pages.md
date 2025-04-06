@@ -154,20 +154,14 @@ There should be links for `javadoc`, `jacoco`, and `pitest`;  they should all wo
    </tbody>
 </table>
 
-
-
-
 # Keeping the site up to date
 
-As you add pull requests, the javadoc and storybook will be generated for those as well by GitHub Actions scripts. 
+If/when you add pull requests, reports will be generated for those as well on the later part of the page.
 
-Note that:
-* The javadoc is only generated when there is a change to the backend code (either files under `src/` or the `pom.xml` file)
-* The storybook is only generated when there is a change to the frontend code (files under `frontend/`)
+Note that the javadoc, jacoco, and pitest reports are only generated when there is a change to the backend code (either files under `src/` or the `pom.xml` file).
 
 # Regenerating the site
 
-If at any point, you want to rebuild the entire documentation site, you can run the GitHub Action `02-gh-pages-rebuild`
-again.
+If at any point, you want to rebuild the entire documentation site, you can run the GitHub Action `02-gh-pages-rebuild` again.
 
    
