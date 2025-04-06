@@ -2,14 +2,14 @@
 
 This Spring Boot application is set up to use Google OAuth as it's authentication scheme.
 
-Setting this up on localhost requires the first three steps below; getting this to work on dokku requires an additional fourth step.
+This document describes how to set up this app for OAuth on `localhost`; setting up dokku is described in [`/docs/dokku.md`](/docs/dokku.md).
 
 Before we get into the details, here's an overview of the process.  
+
 1. The *first* time you set up Google OAuth for an application you will need to set up a *project* and configure the *OAuth consent screen* for that project.  This is where you set the limits on what access Google has to the user's information.  This is done at the [Google Developer Console](https://console.cloud.google.com/) and is explained below.
 2. Every time you set up a Google OAuth application, you will need a Google  *client id* and *client secret*.  This is also 
    done at the [Google Developer Console](https://console.cloud.google.com/) and is also explained below.
 3. Once you have these two values, you will put them in a `.env` file at the root of the repo; this is for only for testing the app on `localhost`.  The `.env` file is *not* checked into Github.
-4. For running on dokku, you will also need to put these two values into configuration variables for the dokku app; this is done via the command line after you `ssh` into your dokku server.
 
 Now lets look at these steps in more detail. For some of the details, we'll refer you to article on the CMPSC 156 web site.
 
