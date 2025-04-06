@@ -92,12 +92,11 @@ cd into frontend and type: npm ci; npm start";
 
 # Getting Started on Dokku
 
-* Follow the steps here: <https://ucsb-cs156.github.io/topics/dokku/getting_started.html>
-* Set up Google OAuth as documented in [`docs/oauth.md`](docs/oauth.md) 
-* Set up Postgres, as documented in  <https://ucsb-cs156.github.io/topics/dokku/postgres_database.html>
-* Set the config variable `PRODUCTION=true`
-* Be sure that you do: <tt>dokku git:set <i>appname</i> keep-git-dir true</tt> before doing <tt>dokku ps:rebuild <i>appname</i></tt>
+Follow the steps here: [`docs/dokku.md`](docs/dokku.md) 
 
+These references may also be helpful:
+  * <https://ucsb-cs156.github.io/topics/dokku/getting_started.html>
+  * <https://ucsb-cs156.github.io/topics/dokku/postgres_database.html>
 
 # Accessing swagger
 
@@ -110,17 +109,6 @@ To access the Swagger API endpoints, use:
 
 You can also append `/swagger-ui/index.html` to the URL manually when running on Dokku.
 
-# To run React Storybook locally (for development)
-
-* cd into frontend
-* use: `npm run storybook`
-* This should put the storybook on http://localhost:6006
-* Additional stories are added under frontend/src/stories
-
-You can also see the storybook for the main branch and all open pull requests on the 
-github pages site associated with the repo; see [/docs/github-pages.md](/docs/github-pages.md) for more info.
-
-* For documentation on React Storybook, see: <https://storybook.js.org/>
 
 # To generate javadoc (locally, for development)
 
