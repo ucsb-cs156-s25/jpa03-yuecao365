@@ -2,47 +2,34 @@
 
 This Spring Boot application is set up to use Google OAuth as it's authentication scheme.
 
-Setting this up on localhost requires the first two steps below; getting this to work on Heroku requires an additional third step.
+Setting this up on localhost requires the first three steps below; getting this to work on dokku requires an additional fourth step.
 
-1. Obtaining a Google *client id* and *client secret*, which is
-   done at the [Google Developer Console](https://console.cloud.google.com/).
-2. Configuring the `.env` file with these values.
-3. Copying the `.env` values to the dokku app's configuration values.
+Before we get into the details, here's an overview of the process.  
+1. The *first* time you set up Google OAuth for an application you will need to set up a *project* and configure the *OAuth consent screen* for that project.  This is where you set the limits on what access Google has to the user's information.  This is done at the [Google Developer Console](https://console.cloud.google.com/) and is explained below.
+2. Every time you set up a Google OAuth application, you will need a Google  *client id* and *client secret*.  This is also 
+   done at the [Google Developer Console](https://console.cloud.google.com/) and is also explained below.
+3. Once you have these two values, you will put them in a `.env` file at the root of the repo; this is for only for testing the app on `localhost`.  The `.env` file is *not* checked into Github.
+4. For running on dokku, you will also need to put these two values into configuration variables for the dokku app; this is done via the command line after you `ssh` into your dokku server.
 
+Now lets look at these steps in more detail. For some of the details, we'll refer you to article on the CMPSC 156 web site.
 
-# OAuth Setup
+## First Time Only: Create project and Configure OAuth Consent Screen
 
 If this is your first time setting up a Google OAuth application in this course, you may need to do three steps.
 Later in the course, you'll only need to do the last of these, three, since the first two are typically "one-time" only steps.
 
-1. One time only: Set up a project in the Google Developer Console: 
+* To set up a project in the Google Developer Console, follow these instructions:
    - <https://ucsb-cs156.github.io/topics/oauth/google_create_developer_project.html>
-2. One time only: Set up an OAuth Consent Screen for your project: 
+* To set up an OAuth Consent Screen for your project, follow these instructions:
    - <https://ucsb-cs156.github.io/topics/oauth/google_oauth_consent_screen.html>
-3. Once for each application: Create a set of OAuth credentials (`GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` values): 
-   - <https://ucsb-cs156.github.io/topics/oauth/oauth_google_setup.html>
+ 
+## Obtain `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`
 
-Once you have created the OAuth Credentials, you'll need to
-configure your application with these values.
+To create a set of OAuth credentials (`GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` values), follow the instructions here:
+* <https://ucsb-cs156.github.io/topics/oauth/oauth_google_setup.html>
 
-* For `localhost`, those values go in the `.env` file (as explained below)
-* For Dokku, those values are set using `dokku config:set ...` (as explained below)
+## To run on localhost: configure `.env` file:
 
-# About the `.env` and `.env.SAMPLE` files.
-
-* The `.env` file is created by copying it from `.env.SAMPLE` and then editing it, e.g.
-  
-  ```
-  cp .env.SAMPLE .env
-  ```
-* Recall that `.env` and `.env.SAMPLE` will not show up in regular directory listings; files starting with `.` are considered
-  hidden files.  Use `ls -a`, or configure your Mac finder/Windows explorer to show hidden files.
-* As explained below, put your client-id and client-secret into `.env`, NOT in `.env.SAMPLE` 
-* `.env` is never committed to the GitHub repo
-* There is more information about `.env` vs. `.env.SAMPLE` on this page if you are interested: [docs/environment-variables](environment-variables.md).
-
-
-## Step 1: Set up `.env` values for `localhost`
 
 In the top level directory, use this command to copy `.env.SAMPLE` to `.env`.  Recall that you
 may need to use `ls -a` to get the files to show up, since they are hidden files on Unix-like systems.
@@ -51,9 +38,15 @@ may need to use `ls -a` to get the files to show up, since they are hidden files
 cp .env.SAMPLE .env
 ```
 
-The file `.env.SAMPLE` **should not be edited;** it is intended to
-be a template for creating a file called `.env` that contains
-your repository secrets.
+Recall that `.env` and `.env.SAMPLE` will not show up in regular directory listings; files starting with `.` are considered
+hidden files.  Use `ls -a`, or configure your Mac finder/Windows explorer to show hidden files.
+
+As explained below, put your client-id and client-secret into `.env`, NOT in `.env.SAMPLE` 
+* `.env` is never committed to the GitHub repo
+* There is more information about `.env` vs. `.env.SAMPLE` on this page if you are interested: [docs/environment-variables](environment-variables.md).
+
+The file `.env.SAMPLE` **should not be edited;** and **should not be deleted from the repo**.  It is intended to
+be a template for creating a file called `.env` that contains your repository secrets, and future developers will need it to stick around.
 
 The `.env` is in the `.gitignore` because **a file containing secrets should NOT be committed to GitHub, not even in a private repo.
 
@@ -67,7 +60,7 @@ ADMIN_EMAILS=phtcon@ucsb.edu
 
 Replace `see-instructions` with the appropriate values.
 
-# Setting up `ADMIN_EMAILS`
+## Setting up `ADMIN_EMAILS` in `.env`
 
 The `ADMIN_EMAILS` value is used to determine which users have access to administrative features in the app.  One of those
 is the ability to list the users that have logged in.
@@ -93,94 +86,36 @@ that you pin that post in your team slack channel for easy reference.
 With this done, you should be all set to run on localhost.
 
 
-## Step 2: Copying `.env` values to Dokku
-
-There are two ways to set up your `.env` values on Dokku.
-
-* One variable at a time (recommended if this is your first time doing this)
-* All at once with a file 
-
-## Step 2a: Copying `.env` values to Dokku one at a time
-
-To copy the values to Dokku one at a time, do this
-for each line in the `.env` file:
-
-On the dokku server command line, type:<br />
-
-<tt>dokku config:set --no-restart <b></i>app-name VARIABLE=VALUE</i></b></tt>, where
-
-* <b></i>app-name</i></b> is your app name such as `jpa03-cgaucho`.  It needs to match what you see when you type `dokku apps:list`
-* <b></i>VARIABLE=VALUE</i></b> is one of the lines in your .env. file
-
-Note that on Dokku, you also typically need to set this
-value (this typically does *not* go in your .env)
-
-<tt>dokku config:set --no-restart <b></i>app-name</i></b> PRODUCTION=true</tt>
+## Configuring dokku apps for OAuth
 
 
-## Step 2b: Copying `.env` values to Dokku all at once
+Before you try to configure a dokku app for OAuth, do these steps *in this order*.  If you try them in a different order, things won't work properly.
 
-The idea of this step is to copy/paste the values
-from from your `.env` file into a file in your Dokku account
-and then load the values all at once.
+** Do not literally use `appname` in these instructions; substitute in <tt>jpa03-<M
 
-You could use file transfer, but because of various firewall settings, it may be easier to just copy/paste like this:
+1. Configure the app on localhost using a `.env` file as explained above, and have the `.env` file open in an editor so that the values are handy.
+2. Create a new dokku app with <tt>dokku apps:create jpa03-<i>yourGithubLogin</i></tt>
+3. Use these commands to set up the configuration variables for the app.  Replace *value-from-env* in each case with the correct value from the .env file you configured for localhost:<br />
+   <tt>dokku config:set --no-restart jpa03-<i>yourGithubLogin</i> PRODUCTION=true</tt><br />
+   <tt>dokku config:set --no-restart jpa03-<i>yourGithubLogin</i> GOOGLE_CLIENT_ID=<i>value-from-env</i></tt><br />
+   <tt>dokku config:set --no-restart jpa03-<i>yourGithubLogin</i> GOOGLE_CLIENT_SECRET=<i>value-from-env</i></tt><br />
+   <tt>dokku config:set --no-restart jpa03-<i>yourGithubLogin</i> ADMIN_EMAILS=<i>value-from-env</i></tt><br />
+4. Deploy and link a postgres database using<br />
+   <tt>dokku postgres:create jpa03-<i>yourGithubLogin</i>-db</tt><br />
+   <tt>dokku postgres:link jpa03-<i>yourGithubLogin</i>-db jpa03-<i>yourGithubLogin</i> </tt> <br />
+
+5. Build the app with regular `http` using the commands.  This will deploy an http only version of the app. When these commands complete, *you will still not be able to login yet, but you should be able to access the home page over `http`*:<br />
+   <tt>dokku git:sync jpa03-<i>yourGithubLogin</i> https://github.com/ucsb-cs156-s25/jpa03-<i>yourGithubLogin</i> main</tt><br />
+   <tt>dokku ps:rebuild jpa03-<i>yourGithubLogin</i></tt><br />
+6. Now deploy https (encrypting) with these commands.
+   This will deploy an https  version of the app.
+   When these commands complete, *you should be able to login with OAuth*:<br />
+   <tt>dokku letsencrypt:set jpa03-<i>yourGithubLogin</i> email <i>yourEmail</i>@ucsb.edu</tt><br />
+   <tt>dokku letsencrypt:enable jpa03-<i>yourGithubLogin</i></tt>
+   <tt>dokku ps:rebuild jpa03-<i>yourGithubLogin</i></tt><br />
 
 
-1. On the system where you are doing development, 
-   use `cat .env` to list out the contents, e.g.
-
-   ```
-   pconrad@Phillips-MacBook-Air STARTER-jpa03 % cat .env
-   GOOGLE_CLIENT_ID=26622685272-ofq4729s9nt8loednuuv5c0opja1vaeb.apps.googleusercontent.com
-   GOOGLE_CLIENT_SECRET=GOCSPX-fakeCredentials99_fakefake-_fake
-   ADMIN_EMAILS=phtcon@ucsb.edu
-
-   JDBC_DATABASE_URL=jdbc:postgresql://example.org:5432/starter_jpa03_db
-   JDBC_DATABASE_USERNAME=postgres
-   JDBC_DATABASE_PASSWORD=password
-   pconrad@Phillips-MacBook-Air STARTER-jpa03 % 
-   ```
-
-2. At the shell prompt on your dokku server (e.g. dokku-07.cs.ucsb.edu), type this, where `jpa03-cgaucho` is the name of your
-app:
-
-   ```
-   cat > jpa03-gaucho.env
-   ```
-
-   Then, copy paste the contents of the `.env` file into the window, followed by hitting enter, and then Control-D.
-
-   If you then do an `ls` you should see that you have
-   a file called `jpa03-gaucho.env` containing the values
-   you want to set.
-
-3. Now type the following (assuming that `jpa03-cgaucho` is
-   your Dokku app name).
-
-   ```
-   dokku config:set --no-restart jpa03-cgaucho `cat jpa03-gaucho.env`
-   ```
-
-   In this command, the part in backticks (<tt>\`cat jpa03-gaucho.env\`</tt>) specfies that the output of that command should be placed on the command line.
-
-   Accordingly, this sets all of the environment variables at once.
-
-   Note that on Dokku, you also typically need to set this
-   value (this typically does *not* go in your .env)
-
-   <tt>dokku config:set --no-restart <b></i>app-name</i></b> PRODUCTION=true</tt>
-
-   Your next step is likely to configure the application
-   for using the Postgres database; instructions for that
-   can be found here:
-
-   * <https://ucsb-cs156.github.io/topics/dokku/postgres_database.html>
-
-   If you want to restart the application you can either
-   * Leave off the `--no-restart` part, or
-   * Type `dokku ps:restart jpa03-cgaucho` as the next command
-   
 For troubleshooting advice with OAuth, this page may help:
 
 * <https://ucsb-cs156.github.io/topics/oauth/oauth_troubleshooting.html>
+
