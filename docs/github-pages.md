@@ -85,11 +85,37 @@ Return to the main page for the repo,  click on the gear at right, and click the
 
 ## Step 4: Check link
 
-Check that the link loads the Github Pages site.  It should look something like this, but with your repo name in place of the one shown.
-   
-If it doesn't come up right away, check to see whether the  `02-gh-pages-rebuild`  has finished yet.  You may find that it takes a minute or two for the page to become available, and another minute or two before the `javadoc` and `storybook` links for the main branch begin working; but within a minute or two of the  `02-gh-pages-rebuild` finishing both links should work.
+Check that the link loads the Github Pages site.  
 
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/1119017/235750584-2e66dc07-12b3-4593-a289-7e2f2b2060c2.png">
+* At first, it might look like the version on the left; this means the page isn't in place yet.
+* But eventually, it should look like the version on the right, but with your repo name in place of the one shown.  
+
+
+<table>
+<thead>
+<tr>
+<th>
+If the Github Pages site is not yet fully deployed:
+</th>
+<th>
+When the GitHub Pages site is fully deployed:
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/2ceb5502-6b4b-4996-8e57-4002286e1fd4" />
+</td>
+<td>
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/1119017/235750584-2e66dc07-12b3-4593-a289-7e2f2b2060c2.png"></td>
+</tr>
+</tbody>
+</table>
+
+   
+If it doesn't come up right away, check to see whether the  `02-gh-pages-rebuild-part-1` and `04-gh-pages-rebuild-part-2` actions have both finished.  You may find that it takes a minute or two for the page to become available, and another minute or two before the `javadoc`, `jacoco`, and `pitest` links for the main branch begin working; but within a few minutes, the page should load, and all of the links should work.
+
    
 # What should it look like?
 
