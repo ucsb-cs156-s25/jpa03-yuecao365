@@ -119,20 +119,43 @@ If it doesn't come up right away, check to see whether the  `02-gh-pages-rebuild
    
 # What should it look like?
 
-When it works, the top level page should look something like this:
+When it works, the top level page should look something like this. (There will be more to the page below what's shown here, but this is the only part we care about for now; the rest deals with pull requests, which will start talking about when we get to the team projects later.)
 
-<img width="400" alt="image" src="https://github.com/user-attachments/assets/60de1d4d-42aa-4ae1-b8e6-fba997bd1571">
+<img width="613" alt="image" src="https://github.com/user-attachments/assets/7cc89aea-a9bc-4058-988a-8f4988db0cad" />
 
-The javadoc should look something like this:
+There should be links for `javadoc`, `jacoco`, and `pitest`;  they should all work, and look something like what you see in the table below.
 
-<img width="400" alt="image" src="https://user-images.githubusercontent.com/1119017/235764018-3de19026-bab8-4308-93bf-7cad2679cbf6.png">
+<table>
+   <thead>
+      <tr>
+         <th>
+            javadoc
+         </th>
+         <th>
+            jacoco
+         </th>
+         <th>
+            pitest
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>
+            <img width="862" alt="image" src="https://github.com/user-attachments/assets/6383f288-4df2-467a-bce3-0ca29365749d" />
+         </td>
+         <td>
+         <img width="864" alt="image" src="https://github.com/user-attachments/assets/25cfeaf8-3bd4-4d6f-bbd3-879db70f7bc0" />
+         </td>
+         <td>
+         <img width="885" alt="image" src="https://github.com/user-attachments/assets/7e03672b-c713-4132-8de3-991c9e075a89" />
+         </td>
+      </tr>
+   </tbody>
+</table>
 
-The storybook should look something like this:
 
-<img width="864" alt="image" src="https://github.com/user-attachments/assets/7f586b76-fbc6-4df8-8fc0-f99a145c413c">
 
-Note that the Storybook may not appear unless/until you update the `CHROMATIC_PROJECT_TOKEN` which is typically a later
-stage in the setup instructions documented here: <https://ucsb-cs156.github.io/topics/chromatic/>
 
 # Keeping the site up to date
 
