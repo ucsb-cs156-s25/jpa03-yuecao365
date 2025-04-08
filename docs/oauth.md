@@ -2,7 +2,9 @@
 
 This Spring Boot application is set up to use Google OAuth as it's authentication scheme.
 
-This document describes how to set up this app for OAuth on `localhost`; setting up dokku is described in [`/docs/dokku.md`](/docs/dokku.md).
+This document describes how to set up this app for OAuth on `localhost`.
+
+Setting up dokku is described in [`/docs/dokku.md`](/docs/dokku.md), but *please follow these steps first*.
 
 Before we get into the details, here's an overview of the process.  
 
